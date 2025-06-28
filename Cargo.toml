@@ -1,0 +1,25 @@
+[package]
+name = "nuage"
+version = "0.1.0"
+edition = "2024"
+
+[dependencies]
+chrono = "0.4.41"
+image = { version = "0.25.6", default-features = false, features = [
+  "jpeg",
+  "png",
+] }
+ureq = "3.0.12"
+eframe = { version = "0.31.1", default-features = false, features = [
+    "wgpu",
+    "default_fonts",
+    "persistence",
+    "x11",
+] }
+
+[profile.release] # A profile to try to minimize the size
+panic = "abort" # Abort on Panic
+strip = true
+opt-level = "z" # Optimize For Size
+lto = true # Enable Link Time Optimization (LTO)
+codegen-units = 1 # Reduce Parallel Code Generation Units to Increase Optimization
